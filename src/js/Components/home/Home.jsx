@@ -1,18 +1,18 @@
 import React from 'react';
 
-const Home  = ({onChangePage}) => {
-    return <div className='address-card-cell' >
-      <div className="a-row">
+const Home = ({ onChangePage }) => {
+  return <div className='card' onClick={() => onChangePage('listing')} >
+    <div className="row">
+      <div>
+        <img alt="Your Addresses" src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/address-map-pin._CB485934183_.png" />
+      </div>
+      <div className="container">
+        <h2>Your Addresses</h2>
         <div>
-          <img alt="Your Addresses" src="https://m.media-amazon.com/images/G/31/x-locale/cs/ya/images/address-map-pin._CB485934183_.png" />
-        </div>
-        <div>
-          <h2>
-            Your Addresses
-            </h2>
-          <div onClick={() => onChangePage('listing')}><span className="a-color-secondary">Edit addresses for orders and gifts</span></div>
+          <span className="a-color-secondary">Edit addresses for orders and gifts</span>
         </div>
       </div>
+    </div>
   </div>
 }
 
