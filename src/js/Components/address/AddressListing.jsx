@@ -24,7 +24,7 @@ const AddressListing = () => {
         {
             id: 2,
             country: "India",
-            fullname: "Pradeep",
+            fullname: "Pradeep Gehlot",
             mobile: "3423323232",
             pincode: "400001",
             houseno: 'House no 33',
@@ -35,6 +35,8 @@ const AddressListing = () => {
             default: false,
         }
     ]);
+
+    //Events
 
     const removeAddress = (item) => {
         let updatedList = addressList.filter((x) => x.id !== item.id);

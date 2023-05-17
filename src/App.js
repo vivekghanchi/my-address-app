@@ -5,7 +5,10 @@ import Home from '../src/js/Components/home/Home';
 
 
 function App() {
+  //State
   let [selectedPage, setSelectedPage] = React.useState('home');
+
+  //Events
   const onChangePage = (name) => {
     setSelectedPage(name);
   }

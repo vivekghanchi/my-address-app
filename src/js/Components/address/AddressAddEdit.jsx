@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from '../core/TextField';
 
 const AddressAddEdit = ({ saveNewAddress, item, isAddNew }) => {
+    //State
     const [addNewAddress, setAddNewAddressItem] = React.useState(isAddNew ? {
         country: "India",
         fullname: "",
@@ -15,6 +16,7 @@ const AddressAddEdit = ({ saveNewAddress, item, isAddNew }) => {
         default: false,
     } : item);
 
+    //Events
     const onChangeInput = (e) => {
         let address = { ...addNewAddress };
         address[e.target.name] = e.target.value;
