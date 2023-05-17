@@ -41,6 +41,18 @@ const AddressListing = () => {
         setAddressList(updatedList);
     }
 
+    const setAsDefault = (item) => {
+        const updAddresses = addressList.map((x) => {
+            if (x.id === item.id) {
+                x.default = true;
+            } else {
+                x.default = false;
+            }
+            return x;
+        });
+        setAddressList(updAddresses);
+    }
+
     const editAddress = (item) => {
         setSelectedAddress(item);
         setIsAddNew(false);
@@ -74,20 +86,42 @@ const AddressListing = () => {
 
     return <>
         {showAddEditAddress && <AddressAddEdit saveNewAddress={saveNewAddress} isAddNew={isAddNew} item={selctedAddress} />}
-        {!showAddEditAddress && <><div className="a-box-inner a-padding-extra-large">
-            <div id="ya-myab-plus-address-icon" className="a-section a-spacing-none address-plus-icon aok-inline-block"></div>
-            <h2 className="a-color-tertiary" onClick={() => addAddress()}>Add address</h2>
-        </div>
-            {addressList.map((item, index) => {
-                return <div key={index}>
-                    <AddressItem item={item} />
-                    <button onClick={() => editAddress(item)}>Edit</button>
-                    <button onClick={() => removeAddress(item)}>Remove</button>
-                    <br />
-                    <br />
+        {!showAddEditAddress && <div className={'a-section a-spacing-double-large'}>
+            <div className="a-row a-spacing-micro">
+                <div className="a-column a-span4 a-spacing-none a-spacing-top-mini address-column">
+                    <div className="a-box first-desktop-address-tile" onClick={() => addAddress()}>
+                        <div className="a-box-inner a-padding-extra-large">
+                            <div id="ya-myab-plus-address-icon" className="a-section a-spacing-none address-plus-icon aok-inline-block"></div>
+                            <h2 >Add address</h2>
+                        </div>
+                    </div>
                 </div>
-            })}
-        </>}
+                {addressList.map((item, index) => {
+                    return <div className={"a-column a-span4 a-spacing-none a-spacing-top-mini address-column"} key={index}>
+                        <div className="a-box a-spacing-none normal-desktop-address-tile">
+                            <div className={"a-box-inner a-padding-none"}>
+                                {item.default && <div className={"a-section a-spacing-none default-section"}>
+                                    <span className="a-size-small a-color-secondary default-line-item">Default</span>
+                                    <div id="ya-myab-default-shipping-address-icon" className="a-section a-spacing-none amazon-logo aok-inline-block"></div>
+                                </div>}
+                                <div className={"a-section address-section-with-default"}>
+                                    <div className={"a-row a-spacing-small"}>
+                                    </div>
+                                    <AddressItem item={item} />
+                                </div>
+                                <div className="a-row edit-address-desktop-link">
+                                    <button onClick={() => editAddress(item)}>Edit</button>
+                                    &nbsp; | &nbsp;
+                                    <button onClick={() => removeAddress(item)}>Remove</button>
+                                    {!item.default && <>&nbsp; | &nbsp;  <button onClick={() => setAsDefault(item)}>Set as Default</button></>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                })}
+            </div>
+        </div>
+        }
     </>
 }
 
