@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import * as React from 'react';
 import './App.css';
+import AddressListing from '../src/js/Components/address/AddressListing';
+import Home from '../src/js/Components/home/Home';
+
 
 function App() {
+  let [selectedPage, setSelectedPage] = React.useState('home');
+  const onChangePage = (name) => {
+    setSelectedPage(name);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="App-header" onClick={() => onChangePage("home")}>
+        Welcome to the Address App
       </header>
-    </div>
+      <section>
+        {selectedPage === 'home' && <Home onChangePage={onChangePage} />}
+        {selectedPage === 'listing' && <AddressListing />}
+      </section>
+    </div >
   );
 }
 
